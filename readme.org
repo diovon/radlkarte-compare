@@ -4,7 +4,18 @@ Das Python Skript hilft bei der Visualisierung von Unterschieden zwischen zwei G
 
 ** Funktionsweise
 
+Es wird nur auf geometrische Veränderungen überprüft!
+
 Das Skript überprüft mithilfe der Symmetrischen Differenzberechnung die Unterschiede zwischen den beiden Dateien. Zusätzlich wird ein Clustering durchgeführt, um Änderungen die nahe beieinander liegen zusammenzufassen. So wird auch die Anzahl der ausgegebenen Ergebnisdateien reduziert. Als Ergebnis werden für jeden gefundenen Cluster eine PNG-Datei erstellt und in einem Ergebnis-Ordner abgelegt. Die PNG-Datei zeigt einen Vorher/Nachher Vergleich an, indem die gefundene Stelle in zwei Plots nebeneinander dargestellt werden. Die Geometrien werden nach dem Styling von radlkarte.at dargestellt, um so die Unterschiede besser darstellen zu können. Des Weiteren werden OpenStreetMap Tile als Hintergrund verwendet, um so die visuelle Verortung zu erleichtern.
+
+Update:
+-------
+
+In der neuesten Version wurden ein paar interne Fehler behoben, so wurde der Puffer nicht korrekt berechnet und es wird jetzt im Vorher-Bild die Änderungen hervorgehoben.
+
+grün - es wurde was ergänzt
+rot - es wurde was gelöscht
+gelb - es hat sich nur die Geometrie verändert
 
 #+CAPTION: Beispiel Ausgabe
 [[file:beispiel.png]]
@@ -31,7 +42,7 @@ python3 radlkarte_compare.py datei_alt.geojson datei_neu.geojson [ausgabe ordner
 - datei_neu.geojson
 - ausgabe_ordner        optional
 - max_renders           optional
-- cluster_buffer_deg    optional
+- cluster_distance_m    optional
 
 datei_alt.geojson
 Die Datei, die die Situation vor der Anpassung enthält.
